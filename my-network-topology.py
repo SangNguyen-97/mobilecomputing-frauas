@@ -99,12 +99,12 @@ net.addController(c0)
 
 # Docker hosts
 info('*** Adding docker containers\n')
-d1 = net.addDocker('d1', ip='10.1.1.1', dns=['10.0.0.1'], dimage="midoricontainer:v1.1", dcmd="./bootstrap.sh")
-d2 = net.addDocker('d2', ip='10.1.2.2', dns=['10.0.0.1'], dimage="midoricontainer:v1.1", dcmd="./bootstrap.sh")
-d3 = net.addDocker('d3', ip='10.2.1.3', dns=['10.0.0.1'], dimage="midoricontainer:v1.1", dcmd="./bootstrap.sh")
-d4 = net.addDocker('d4', ip='10.2.2.4', dns=['10.0.0.1'], dimage="midoricontainer:v1.1", dcmd="./bootstrap.sh")
-d5 = net.addDocker('d5', ip='10.3.1.5', dimage="droopy:v1.1", dcmd="python /home/apps/droopy -m 'Welcome to simple file server' --dl -d '/home/apps/uploads' " )
-d6 = net.addDocker('d6', ip='10.4.2.6', dimage="droopy:v1.1", dcmd="python /home/apps/droopy -m 'Welcome to simple file server' --dl -d '/home/apps/uploads' " )
+d1 = net.addDocker('d1', ip='10.1.1.1', dns=['10.0.0.1'], dimage="sangnguyenfrauas/midoricontainer:v1.1", dcmd="./bootstrap.sh")
+d2 = net.addDocker('d2', ip='10.1.2.2', dns=['10.0.0.1'], dimage="sangnguyenfrauas/midoricontainer:v1.1", dcmd="./bootstrap.sh")
+d3 = net.addDocker('d3', ip='10.2.1.3', dns=['10.0.0.1'], dimage="sangnguyenfrauas/midoricontainer:v1.1", dcmd="./bootstrap.sh")
+d4 = net.addDocker('d4', ip='10.2.2.4', dns=['10.0.0.1'], dimage="sangnguyenfrauas/midoricontainer:v1.1", dcmd="./bootstrap.sh")
+d5 = net.addDocker('d5', ip='10.3.1.5', dimage="sangnguyenfrauas/droopy:v1.1", dcmd="python /home/apps/droopy -m 'Welcome to simple file server' --dl -d '/home/apps/uploads' " )
+d6 = net.addDocker('d6', ip='10.4.2.6', dimage="sangnguyenfrauas/droopy:v1.1", dcmd="python /home/apps/droopy -m 'Welcome to simple file server' --dl -d '/home/apps/uploads' " )
 
 # Switches
 info('*** Adding switches\n')
