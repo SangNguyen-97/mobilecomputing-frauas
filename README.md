@@ -1,13 +1,13 @@
-# mobilecomputing-frauas
+# Mobile Computing FRA-UAS
 Experiment file for Mobile Computing project at FRA-UAS
 
-Before downloading these file, make sure that Containernet is installed and POX controller source code (fangtooth branch) is downloaded. Containernet will be run using Python 3 and POX controller will be run using Python 2.
+Before downloading these file, make sure that Containernet [1] is installed and POX controller [2] source code (fangtooth branch) is downloaded. Containernet will be run using Python 3 and POX controller will be run using Python 2.
 1. Copy "nsh.py" to directory ".../pox-fangtooth/pox/lib/packet"
 2. Copy "my-controller.py" to ".../pox-fangtooth/ext"
 
-
-URL to Containernet project:
+# Reference
+[1] URL to Containernet project:
 https://github.com/containernet/containernet
 
-URL to POX project:
+[2] URL to POX project:
 https://github.com/noxrepo/pox/tree/fangtooth
