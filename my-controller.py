@@ -1,16 +1,3 @@
-# Copyright 2012 James McCauley
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at:
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
 # NOTE:
 # 1. The controller MUST be started after the network (when the controller is running and there is a
@@ -368,33 +355,6 @@ class accessRouter (object):
           self.resend_packet(eth_reply.pack(),in_port)
 
 
-              # OBSOLETE
-              # # Check if this ARP packet comes from the access-side
-              # if in_port in self.access_side_ports:
-              #   # No matter what the ARP packet is, record the learned IP-MAC-Port association
-              #   self.ip_to_mac[arp_pack.protosrc.toStr()] = arp_pack.hwsrc.toStr()
-              #   self.mac_to_port[arp_pack.hwsrc.toStr()] = in_port
-              #   # Check if this ARP packet is destined to this gateway router
-              #   if arp_pack.protodst == IPAddr(self.access_side_ip_address):
-              #     # If this ARP packet is a REQUEST:
-              #     if arp_pack.opcode == pkt.arp.REQUEST:
-              #       # Packing ARP packet
-              #       arp_reply = pkt.arp()
-              #       arp_reply.hwsrc = EthAddr(self.access_side_mac_address)
-              #       arp_reply.hwdst = arp_pack.hwsrc
-              #       arp_reply.opcode = pkt.arp.REPLY
-              #       arp_reply.protosrc = IPAddr(self.access_side_ip_address)
-              #       arp_reply.protodst = arp_pack.protosrc
-              #       # Packing Ethernet packet
-              #       eth_reply = pkt.ethernet()
-              #       eth_reply.type = pkt.ethernet.ethernet.ARP_TYPE
-              #       eth_reply.src = EthAddr(self.access_side_mac_address)
-              #       eth_reply.dst = arp_pack.hwsrc
-              #       eth_reply.payload = arp_reply
-              #       self.resend_packet(eth_reply.pack(), in_port)
-              #     # If this ARP packet is a REPLY
-              #     # elif arp_pack.opcode == pkt.arp.REPLY:
-              #     #   # nTODO: Send all the pending packets for the newly discovered MAC (including NSH processing)
     # Packet from a foreign IP address
     else:
       # Check if the receiving port is listening to ping sweep
@@ -609,19 +569,6 @@ class accessRouter (object):
             # Send ARP Request to ask for the missing ip_mac_port entry
             self.ask_for_arp(ipv4_pack.dstip.toStr(),self.access_side_ports)
 
-            # arp_request = pkt.arp()
-            # arp_request.hwsrc = EthAddr(self.access_side_mac_address)
-            # arp_request.opcode = pkt.arp.REQUEST
-            # arp_request.protosrc = IPAddr(self.access_side_ip_address)
-            # arp_request.protodst = IPAddr(ipv4_pack.dstip.toStr())
-            # # Packing Ethernet packet
-            # eth_encap = pkt.ethernet()
-            # eth_encap.type = pkt.ethernet.ARP_TYPE
-            # eth_encap.src = EthAddr(self.access_side_mac_address)
-            # eth_encap.dst = pkt.ETHER_BROADCAST
-            # eth_encap.payload = arp_request
-            # for port in self.access_side_ports:
-            #   self.resend_packet(eth_encap.pack(), port)
     # This NSH packet is to be sent out to core network
     else:
       eth_encap = pkt.ethernet(src=EthAddr(self.core_side_mac_address), dst=EthAddr(nsh_nexthop), type=pkt.ethernet.NSH_TYPE, payload=nsh_pack)
@@ -677,21 +624,6 @@ class accessRouter (object):
               # Send ARP Request to ask for the missing ip_mac_port entry
               self.ask_for_arp(ipv4_pack.dstip.toStr(), self.access_side_ports,in_port)
               
-              # arp_request = pkt.arp()
-              # arp_request.hwsrc = EthAddr(self.access_side_mac_address)
-              # arp_request.opcode = pkt.arp.REQUEST
-              # arp_request.protosrc = IPAddr(self.access_side_ip_address)
-              # arp_request.protodst = IPAddr(ipv4_pack.dstip.toStr())
-              # # Packing Ethernet packet
-              # eth_encap = pkt.ethernet()
-              # eth_encap.type = pkt.ethernet.ARP_TYPE
-              # eth_encap.src = EthAddr(self.access_side_mac_address)
-              # eth_encap.dst = pkt.ETHER_BROADCAST
-              # eth_encap.payload = arp_request
-              # for port in self.access_side_ports:
-              #   if port != in_port:
-              #     self.resend_packet(eth_encap.pack(), port)
-
 
           # IP destination is NOT directly connected to this switch
           else:
